@@ -111,12 +111,10 @@ class Book:
     def instance_from_db(cls, row):
         book = cls.all.get(row[0])
         if book:
-            # ensure attributes match row values in case local instance was modified
             book.name = row[1]
             book.author = row[2]
             book.genre_id = row[3]
         else:
-            # not in dictionary, create new instance and add to dictionary
             book = cls(row[1], row[2], row[3])
             book.id = row[0]
             cls.all[book.id] = book

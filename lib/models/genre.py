@@ -132,6 +132,4 @@ class Genre:
         CURSOR.execute(sql, (self.id,),)
 
         rows = CURSOR.fetchall()
-        return [
-            Book.instance_from_db(row) for row in rows
-        ]
+        return [Book.instance_from_db(row) for row in rows]

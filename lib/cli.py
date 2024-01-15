@@ -50,7 +50,7 @@ def main():
         elif choice == "13":
             list_books_in_genre()
         else:
-            print("Invalid choice")
+            print("Please select on of the options displayed in the menu.")
 
 
 def menu():
