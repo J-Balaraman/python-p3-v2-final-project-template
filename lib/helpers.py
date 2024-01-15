@@ -78,7 +78,7 @@ def find_book_by_id():
 def create_book():
     name = input("Enter the book's name: ")
     author = input("Enter the book's author: ")
-    genre_id = input("Enter the book's genre id")
+    genre_id = input("Enter the book's genre id: ")
     try:
         book = Book.create(name, author, genre_id)
         print(f'Success: {book}')

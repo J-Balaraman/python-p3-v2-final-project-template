@@ -3,9 +3,12 @@ from models.__init__ import CURSOR, CONN
 class Genre:
     all = {}
 
-    def init(self, name, id=None):
+    def __init__(self, name, id=None):
         self.id = id
         self.name = name
+
+    def __repr__(self):
+        return f"Genre {self.id}: {self.name}"
     
     @property
     def name(self):
@@ -42,7 +45,7 @@ class Genre:
             VALUES (?)
         """
 
-        CURSOR.execute(sql, (self.name))
+        CURSOR.execute(sql, (self.name,))
         CONN.commit()
 
         self.id = CURSOR.lastrowid

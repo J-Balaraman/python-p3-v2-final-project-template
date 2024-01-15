@@ -2,11 +2,16 @@ from models.__init__ import CURSOR, CONN
 from models.genre import Genre
 
 class Book:
+    all = {}
+
     def __init__(self, name, author, genre_id, id=None):
         self.id = id
         self.name = name
         self.author = author
         self.genre_id = genre_id
+
+    def __repr__(self):
+        return f"Book {self.id}: {self.name}, {self.author}, Genre id: {self.genre_id}"
 
     @property
     def name(self):

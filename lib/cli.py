@@ -54,6 +54,7 @@ def main():
 
 
 def menu():
+    print("==============================")
     print("Please select an option:")
     print("0. Exit the program")
     print("1. List all genres")
@@ -69,6 +70,7 @@ def menu():
     print("11: Update book")
     print("12: Delete book")
     print("13: List all books in a genre")
+    print("==============================")
 
 
 if __name__ == "__main__":
