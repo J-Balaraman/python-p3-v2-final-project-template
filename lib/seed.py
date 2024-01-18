@@ -18,6 +18,5 @@ def seed_database():
     Book.create("The Warmth of Other Suns", "Isabel Wilkerson", non_fiction.id)
     Book.create("The 7 Habits of Highly Effective People", "Stephen Covey", non_fiction.id)
 
-
 seed_database()
 print("Seeded database")

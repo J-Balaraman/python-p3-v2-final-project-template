@@ -50,11 +50,11 @@ def main():
         elif choice == "13":
             list_books_in_genre()
         else:
-            print("Please select on of the options displayed in the menu.")
+            print("Please select one of the options displayed in the menu.")
 
 
 def menu():
-    print("==============================")
+    print("=============================")
     print("Please select an option:")
     print("0. Exit the program")
     print("1. List all genres")
@@ -70,7 +70,7 @@ def menu():
     print("11: Update book")
     print("12: Delete book")
     print("13: List all books in a genre")
-    print("==============================")
+    print("=============================")
 
 
 if __name__ == "__main__":
