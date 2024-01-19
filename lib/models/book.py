@@ -10,9 +10,6 @@ class Book:
         self.author = author
         self.genre_id = genre_id
 
-    def __repr__(self):
-        return f"Book {self.id}: {self.name}, {self.author}, Genre id: {self.genre_id}"
-
     @property
     def name(self):
         return self._name
@@ -86,8 +83,7 @@ class Book:
             SET name = ?, author = ?, genre_id = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.author,
-                             self.genre_id, self.id))
+        CURSOR.execute(sql, (self.name, self.author, self.genre_id, self.id))
         CONN.commit()
 
     def delete(self):

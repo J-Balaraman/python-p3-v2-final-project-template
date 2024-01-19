@@ -9,7 +9,7 @@ def exit_program():
 def list_genres():
     genres = Genre.get_all()
     for genre in genres:
-        print(genre)
+        print(f"Genre #{genre.id}: {genre.name}")
 
 
 def find_genre_by_name():
@@ -21,7 +21,7 @@ def find_genre_by_name():
             print("Invalid input. Please enter a non-empty genre name.")
 
     genre = Genre.find_by_name(name)
-    print(genre) if genre else print(f'Genre {name} not found')
+    print(f"Genre #{genre.id}: {genre.name}") if genre else print(f'Genre {name} not found')
 
 
 def find_genre_by_id():
@@ -33,7 +33,7 @@ def find_genre_by_id():
             print("Invalid input. Please enter a numeric value for genre ID.")
 
     genre = Genre.find_by_id(id_)
-    print(genre) if genre else print(f'Genre {id_} not found')
+    print(f"Genre #{genre.id}: {genre.name}") if genre else print(f'Genre {id_} not found')
 
 
 def create_genre():
@@ -42,7 +42,7 @@ def create_genre():
             name = input("Enter the genre's name: ")
             if name.strip():
                 genre = Genre.create(name)
-                print(f'Success: {genre}')
+                print(f'Success: {f"Genre #{genre.id}: {genre.name}"}')
                 break
             else:
                 print("Invalid input. Please enter a non-empty genre name.")
@@ -61,7 +61,7 @@ def update_genre():
                     genre.name = name
                     
                     genre.update()
-                    print(f'Success: {genre}')
+                    print(f'Success: {f"Genre #{genre.id}: {genre.name}"}')
                 except Exception as exc:
                     print("Error updating genre: ", exc)
             else:
@@ -87,7 +87,7 @@ def delete_genre():
 def list_books():
     books = Book.get_all()
     for book in books:
-        print(book)
+        print(f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}")
 
 def find_book_by_name():
     while True:
@@ -95,7 +95,7 @@ def find_book_by_name():
             name = input("Enter the book's name: ")
             if name.strip():
                 book = Book.find_by_name(name)
-                print(book) if book else print(
+                print(f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}") if book else print(
                     f'Book {name} not found')
                 break
         except ValueError:
@@ -107,7 +107,7 @@ def find_book_by_id():
         try:
             id_ = int(input("Enter the book's id: "))
             book = Book.find_by_id(id_)
-            print(book) if book else print(f'Book {id_} not found')
+            print(f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}") if book else print(f'Book {id_} not found')
             break
         except ValueError:
             print("Invalid input. Please enter an integer")
@@ -121,7 +121,7 @@ def create_book():
             if name.strip() and author.strip():
                 try:
                     book = Book.create(name, author, genre_id)
-                    print(f'Success: {book}')
+                    print(f'Success: {f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}"}')
                 except Exception as exc:
                     print("Error creating book: ", exc)
                 break
@@ -143,7 +143,7 @@ def update_book():
                     book.genre_id = genre_id
         
                     book.update()
-                    print(f'Success: {book}')
+                    print(f'Success: {f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}"}')
                 except Exception as exc:
                     print("Error updating book: ", exc)
             else:
@@ -151,7 +151,6 @@ def update_book():
             break
         except ValueError:
             print("Invalid input. Please enter an integer")
-
 
 def delete_book():
     while True:
@@ -174,7 +173,7 @@ def list_books_in_genre():
             if genre := Genre.find_by_id(id_):
                 for book in books:
                     if book.genre_id == genre.id:
-                        print(book)
+                        print(f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}")
             else:
                 print("Invalid Genre Id")
             break
