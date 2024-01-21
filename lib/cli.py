@@ -47,6 +47,7 @@ def genre_path():
     print("3: Create genre")
     print("4: Update genre")
     print("5: Delete genre")
+    print("6: Go Back")
     print("===============================")
     genre_input = input("> ")
     if genre_input == "0":
@@ -61,6 +62,8 @@ def genre_path():
         update_genre()
     elif genre_input == "5":
         delete_genre()
+    elif genre_input == '6':
+        pass
     else:
         print("Please enter a valid number")
 
@@ -74,6 +77,7 @@ def book_path():
     print("3: Create a book")
     print("4: Update a book")
     print("5: Delete a book")
+    print("6: Go Back")
     print("===============================")
     book_input = input("> ")
     if book_input == "0":
@@ -88,6 +92,8 @@ def book_path():
         update_book()
     elif book_input == "5":
         delete_book()
+    elif book_input == "6":
+        pass
     else:
         print("Please enter a valid number")
 
