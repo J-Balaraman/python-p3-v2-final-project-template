@@ -1,172 +1,116 @@
-# Phase 3 CLI+ORM Project Template
+# Library CLI
+The Library CLI is a versatile command-line interface meticulously designed for the holistic management of a diverse collection of books and genres within a database. This tool empowers users to seamlessly access, modify, create, and delete entries spanning a wide range of literary works. Whether exploring the realms of fantasy, engaging with non-fiction narratives, or immersing in the nuances of realistic fiction, this CLI provides an intuitive solution for organizing and maintaining an extensive library of diverse books. With its user-friendly commands and structured approach, the Library CLI caters to the needs of readers seeking an effective tool for comprehensive library management.
 
-## Learning Goals
+# Installation
+To use the Library CLI, follow these steps:
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   ```
 
----
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd your-repo
+   ```
 
-## Introduction
+3. **Install Dependencies using Pipenv:**
+   Ensure you have Pipenv installed. Then, run the following commands to set up the virtual environment and install dependencies:
+   ```bash
+   pipenv install
+   ```
 
-You now have a basic idea of what constitutes a CLI. Fork and clone this lesson
-for a project template for your CLI.
+4. **Activate the Virtual Environment:**
+   ```bash
+   pipenv shell
+   ```
+   This command activates the virtual environment, isolating your CLI project from other Python installations on your system.
 
-Take a look at the directory structure:
+5. **Run the CLI:**
+   ```bash
+   python main.py
+   ```
+   This command launches the Library CLI, enabling you to start managing your book entries and genres from the command line.
 
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── models
-    │   ├── __init__.py
-    │   └── model_1.py
-    ├── cli.py
-    ├── debug.py
-    └── helpers.py
-```
+Remember to replace "your-username" and "your-repo" with your actual GitHub username and repository name. This guide reflects the use of Pipenv for dependency management and creating a virtual environment.
 
-Note: The directory also includes two files named `CONTRIBUTING.md` and
-`LICENSE.md` that are specific to Flatiron's curriculum. You can disregard or
-delete the files if you want.
+# Usage
+The Library CLI offers a set of commands to help you manage your book entries and genres efficiently. Below are some common use cases:
 
----
+#### Accessing Menus
 
-## Generating Your Environment
+To navigate through different menus, use the following options:
 
-You might have noticed in the file structure- there's already a Pipfile!
+- **Access Genre Menu:**
+  ```bash
+  1
+  ```
+- **Access Book Menu:**
+  ```bash
+  2
+  ```
 
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
+#### Genre Operations
 
-```console
-pipenv install
-pipenv shell
-```
+- **Find Genre by Name:**
+  ```bash
+  1
+  ```
+- **Find Genre by ID:**
+  ```bash
+  2
+  ```
+- **Create Genre:**
+  ```bash
+  3
+  ```
+- **Update Genre:**
+  ```bash
+  4
+  ```
+- **Delete Genre:**
+  ```bash
+  5
+  ```
 
----
+#### Book Operations
 
-## Generating Your CLI
+- **Find Book by Name:**
+  ```bash
+  1
+  ```
+- **Find Book by ID:**
+  ```bash
+  2
+  ```
+- **Create Book:**
+  ```bash
+  3
+  ```
+- **Update Book:**
+  ```bash
+  4
+  ```
+- **Delete Book:**
+  ```bash
+  5
+  ```
 
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
+#### Exiting the Program
 
-The project template has a sample CLI in `lib/cli.py` that looks like this:
+To exit the program at any time, use:
+  ```bash
+  0
+  ```
 
-```py
-# lib/cli.py
+Ensure to follow the on-screen prompts for additional details required during certain operations. Feel free to explore and manage your library effectively using these commands!
 
-from helpers import (
-    exit_program,
-    helper_1
-)
+# Support
+Email: bob.ross@gmail.com
+Phone Number: 123-456-7890
 
+# Authors and acknowledgment
+Author: Jim Balaraman
 
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
-        else:
-            print("Invalid choice")
-
-
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
-
-
-if __name__ == "__main__":
-    main()
-```
-
-The helper functions are located in `lib/helpers.py`:
-
-```py
-# lib/helpers.py
-
-def helper_1():
-    print("Performing useful function#1.")
-
-
-def exit_program():
-    print("Goodbye!")
-    exit()
-```
-
-You can run the template CLI with `python lib/cli.py`, or include the shebang
-and make it executable with `chmod +x`. The template CLI will ask for input, do
-some work, and accomplish some sort of task.
-
-Past that, CLIs can be whatever you'd like, as long as you follow the project
-requirements.
-
-Of course, you will update `lib/cli.py` with prompts that are appropriate for
-your application, and you will update `lib/helpers.py` to replace `helper_1()`
-with a useful function based on the specific problem domain you decide to
-implement, along with adding other helper functions to the module.
-
-In the `lib/models` folder, you should rename `model_1.py` with the name of a
-data model class from your specific problem domain, and add other classes to the
-folder as needed. The file `lib/models/__init__.py` has been initialized to
-create the necessary database constants. You need to add import statements to
-the various data model classes in order to use the database constants.
-
-You are also welcome to implement a different module and directory structure.
-However, your project should be well organized, modular, and follow the design
-principal of separation of concerns, which means you should separate code
-related to:
-
-- User interface
-- Data persistence
-- Problem domain rules and logic
-
----
-
-## Updating README.md
-
-`README.md` is a Markdown file that should describe your project. You will
-replace the contents of this `README.md` file with a description of **your**
-actual project.
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this assignments's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README serves as a template. Replace the contents of this file to describe
-the important files in your project and describe what they do. Each Python file
-that you edit should get at least a paragraph, and each function should be
-described with a sentence or two.
-
-Describe your actual CLI script first, and with a good level of detail. The rest
-should be ordered by importance to the user. (Probably functions next, then
-models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
----
-
-## Conclusion
-
-A lot of work goes into a good CLI, but it all relies on concepts that you've
-practiced quite a bit by now. Hopefully this template and guide will get you off
-to a good start with your Phase 3 Project.
-
-Happy coding!
-
----
-
-## Resources
-
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
+# Project status
+Complete
