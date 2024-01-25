@@ -9,7 +9,7 @@ def exit_program():
 def list_genres():
     genres = Genre.get_all()
     for genre in genres:
-        print(f"Genre #{genre.id}: {genre.name}")
+        print(f"{genre.name}")
 
 
 def find_genre_by_name():
@@ -21,7 +21,7 @@ def find_genre_by_name():
             print("Invalid input. Please enter a non-empty genre name.")
 
     genre = Genre.find_by_name(name)
-    print(f"Genre #{genre.id}: {genre.name}") if genre else print(f'Genre {name} not found')
+    print(f"{genre.name}") if genre else print(f'Genre {name} not found')
 
 
 def find_genre_by_id():
@@ -33,7 +33,7 @@ def find_genre_by_id():
             print("Invalid input. Please enter a numeric value for genre ID.")
 
     genre = Genre.find_by_id(id_)
-    print(f"Genre #{genre.id}: {genre.name}") if genre else print(f'Genre {id_} not found')
+    print(f"{genre.name}") if genre else print(f'Genre {id_} not found')
 
 
 def create_genre():
@@ -42,7 +42,7 @@ def create_genre():
             name = input("Enter the genre's name: ")
             if name.strip():
                 genre = Genre.create(name)
-                print(f'Success: {f"Genre #{genre.id}: {genre.name}"}')
+                print(f'Success: {f"Genre: {genre.name}"}')
                 break
             else:
                 print("Invalid input. Please enter a non-empty genre name.")
@@ -54,40 +54,40 @@ def create_genre():
 def update_genre():
     while True:
         try:
-            id_ = int(input("Enter the genre's id: "))
-            if genre := Genre.find_by_id(id_):
+            name_ = input("Enter the genre's name: ")
+            if genre := Genre.find_by_name(name_):
                 try:
                     name = input("Enter the genre's new name: ")
                     genre.name = name
                     
                     genre.update()
-                    print(f'Success: {f"Genre #{genre.id}: {genre.name}"}')
+                    print(f'Success: {f"Genre: {genre.name}"}')
                 except Exception as exc:
                     print("Error updating genre: ", exc)
             else:
-                print(f'Genre {id_} not found')
+                print(f'Genre {name_} not found')
             break
         except ValueError:
-            print("Invalid input. Please enter an integer")
+            print("Invalid input. Please enter the genre's name")
 
 
 def delete_genre():
     while True:
         try:
-            id_ = int(input("Enter the genre's id: "))
-            if genre := Genre.find_by_id(id_):
+            name_ = input("Enter the genre's name: ")
+            if genre := Genre.find_by_name(name_):
                 genre.delete()
-                print(f'Genre {id_} deleted')
+                print(f'Genre {name_} deleted')
             else:
-                print(f'Genre {id_} not found')
+                print(f'Genre {name_} not found')
             break
         except ValueError:
-            print("Invalid input. Please enter an integer")
+            print("Invalid input. Please enter the genre's name")
 
 def list_books():
     books = Book.get_all()
     for book in books:
-        print(f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}")
+        print(f"{book.name}, {book.author}, Genre #{book.genre_id}")
 
 def find_book_by_name():
     while True:
@@ -95,7 +95,7 @@ def find_book_by_name():
             name = input("Enter the book's name: ")
             if name.strip():
                 book = Book.find_by_name(name)
-                print(f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}") if book else print(
+                print(f"{book.name}, {book.author}, Genre #{book.genre_id}") if book else print(
                     f'Book {name} not found')
                 break
         except ValueError:
@@ -121,7 +121,7 @@ def create_book():
             if name.strip() and author.strip():
                 try:
                     book = Book.create(name, author, genre_id)
-                    print(f'Success: {f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}"}')
+                    print(f'Success: {f"{book.name}, {book.author}, Genre #{book.genre_id}"}')
                 except Exception as exc:
                     print("Error creating book: ", exc)
                 break
@@ -132,50 +132,35 @@ def create_book():
 def update_book():
     while True:
         try:
-            id_ = int(input("Enter the book's id: "))
-            if book := Book.find_by_id(id_):
+            name_ = input("Enter the book's name: ")
+            if book := Book.find_by_name(name_):
                 try:
                     name = input("Enter the book's new name: ")
                     book.name = name
-                    author = input("Enter the book's new author:")
+                    author = input("Enter the book's new author: ")
                     book.author = author
                     genre_id = input("Enter the book's new genre id: ")
                     book.genre_id = genre_id
         
                     book.update()
-                    print(f'Success: {f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}"}')
+                    print(f'Success: {f"{book.name}, {book.author}, Genre #{book.genre_id}"}')
                 except Exception as exc:
                     print("Error updating book: ", exc)
             else:
-                print(f'Book {id_} not found')
+                print(f'Book {name_} not found')
             break
         except ValueError:
-            print("Invalid input. Please enter an integer")
+            print("Invalid input. Please enter the book's name")
 
 def delete_book():
     while True:
         try:
-            id_ = int(input("Enter the book's id: "))
-            if book := Book.find_by_id(id_):
+            name_ = input("Enter the book's name: ")
+            if book := Book.find_by_name(name_):
                 book.delete()
-                print(f'book {id_} deleted')
+                print(f'book {name_} deleted')
             else:
-                print(f'book {id_} not found')
+                print(f'book {name_} not found')
             break
         except ValueError:
-            print("Invalid input. Please enter an integer")
-
-def list_books_in_genre():
-    while True:
-        try:
-            id_ = int(input("Enter the genre's id: "))
-            books = Book.get_all()
-            if genre := Genre.find_by_id(id_):
-                for book in books:
-                    if book.genre_id == genre.id:
-                        print(f"Book #{book.id}: {book.name}, {book.author}, Genre #{book.genre_id}")
-            else:
-                print("Invalid Genre Id")
-            break
-        except ValueError:
-            print("Invalid input. Please enter an integer")
+            print("Invalid input. Please enter the book's name")
