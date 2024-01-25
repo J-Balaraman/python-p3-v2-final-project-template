@@ -56,19 +56,19 @@ To navigate through different menus, use the following options:
   ```bash
   1
   ```
-- **Find Genre by ID:**
+- **Create Genre:**
   ```bash
   2
   ```
-- **Create Genre:**
+- **Update Genre:**
   ```bash
   3
   ```
-- **Update Genre:**
+- **Delete Genre:**
   ```bash
   4
   ```
-- **Delete Genre:**
+- **Go Back:**
   ```bash
   5
   ```
@@ -79,19 +79,19 @@ To navigate through different menus, use the following options:
   ```bash
   1
   ```
-- **Find Book by ID:**
+- **Create Book:**
   ```bash
   2
   ```
-- **Create Book:**
+- **Update Book:**
   ```bash
   3
   ```
-- **Update Book:**
+- **Delete Book:**
   ```bash
   4
   ```
-- **Delete Book:**
+- **Go Back:**
   ```bash
   5
   ```
