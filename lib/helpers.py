@@ -87,7 +87,8 @@ def delete_genre():
 def list_books():
     books = Book.get_all()
     for book in books:
-        print(f"{book.name}, {book.author}, Genre #{book.genre_id}")
+        genre_ = Genre.find_by_id(book.genre_id)
+        print(f"{book.name}, {book.author}, Genre: {genre_.name}")
 
 def find_book_by_name():
     while True:
@@ -95,7 +96,8 @@ def find_book_by_name():
             name = input("Enter the book's name: ")
             if name.strip():
                 book = Book.find_by_name(name)
-                print(f"{book.name}, {book.author}, Genre #{book.genre_id}") if book else print(
+                genre_ = Genre.find_by_id(book.genre_id)
+                print(f"{book.name}, {book.author}, Genre: {genre_.name}") if book else print(
                     f'Book {name} not found')
                 break
         except ValueError:
@@ -117,11 +119,13 @@ def create_book():
         try:
             name = input("Enter the book's name: ")
             author = input("Enter the book's author: ")
-            genre_id = int(input("Enter the book's genre id: "))
-            if name.strip() and author.strip():
+            genre_name = input("Enter the genre associated with the book: ")
+            if name.strip() and author.strip() and genre_name.strip():
                 try:
-                    book = Book.create(name, author, genre_id)
-                    print(f'Success: {f"{book.name}, {book.author}, Genre #{book.genre_id}"}')
+                    genre_ = Genre.find_by_name(genre_name)
+                    book = Book.create(name, author, genre_.id)
+                    genre_ = Genre.find_by_id(book.genre_id)
+                    print(f'Success: {f"{book.name}, {book.author}, Genre: {genre_.name}"}')
                 except Exception as exc:
                     print("Error creating book: ", exc)
                 break
@@ -139,11 +143,12 @@ def update_book():
                     book.name = name
                     author = input("Enter the book's new author: ")
                     book.author = author
-                    genre_id = input("Enter the book's new genre id: ")
-                    book.genre_id = genre_id
+                    genre_name = input("Enter the genre associated with the book: ")
+                    genre_ = Genre.find_by_name(genre_name)
+                    book.genre_id = genre_.id
         
                     book.update()
-                    print(f'Success: {f"{book.name}, {book.author}, Genre #{book.genre_id}"}')
+                    print(f'Success: {f"{book.name}, {book.author}, Genre: {genre_name}"}')
                 except Exception as exc:
                     print("Error updating book: ", exc)
             else:
